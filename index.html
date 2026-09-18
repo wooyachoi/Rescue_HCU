@@ -1417,6 +1417,37 @@ nav.tabs button.active{background:linear-gradient(180deg,rgba(239,35,60,.08),rgb
   #wsGrid{width:min(58dvh,520px)!important;}
 }
 </style>
+
+<style id="rescue-v9-full-design-v9">
+:root{--rescue-red:#e21b2d;--rescue-red-dark:#b90f1f;--rescue-navy:#07111f;--rescue-navy-2:#0c1a2b;--rescue-navy-3:#10243a;--rescue-white:#f5f7fa;--rescue-muted:#aeb8c5}
+body{background:linear-gradient(145deg,#040a12 0%,#07111f 55%,#0b1726 100%)!important;color:var(--rescue-white)!important}
+.panel,.card,.game-panel,.setup-card,.quiz-card,.word-card,.flashcard,.ranking-card,.football-card,.section-card{background:linear-gradient(145deg,rgba(12,26,43,.98),rgba(7,17,31,.98))!important;border:1px solid var(--rescue-red)!important;border-radius:16px!important;box-shadow:0 12px 30px rgba(0,0,0,.22)!important}
+button.gbtn,.gbtn{border:1px solid var(--rescue-red)!important;background:#0c1a2b!important;color:#f5f7fa!important;border-radius:999px!important;box-shadow:none!important}
+button.gbtn:hover,button.gbtn:focus{border-color:var(--rescue-red)!important}
+.day-quick-btn,.day-unknown-access,.day-chip{border:1px solid var(--rescue-red)!important;background:#0c1a2b!important;color:#f5f7fa!important}
+.day-quick-btn.selected,.day-unknown-access.selected,.day-chip.selected{background:var(--rescue-red)!important;border-color:var(--rescue-red)!important;color:#fff!important}
+.unknown-toggle{border:1px solid var(--rescue-red)!important;background:#0c1a2b!important;color:#fff!important}
+.unknown-toggle.on{background:var(--rescue-red)!important;border-color:var(--rescue-red)!important;color:#fff!important}
+.word-meaning,.meaning,.translation,.word-search-meaning,.ws-meaning{color:#fff!important}
+/* landscape: centered section navigation */
+@media (orientation:landscape) and (min-width:700px){
+  header,.topbar,.site-header,.app-header,.main-header{position:relative!important}
+  .section-nav,.top-nav,.nav-tabs,.section-tabs{position:absolute!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;justify-content:center!important;width:max-content!important;max-width:70vw!important}
+  .section-nav,.top-nav,.nav-tabs,.section-tabs{display:flex!important;align-items:center!important}
+  .section-nav>* ,.top-nav>* ,.nav-tabs>* ,.section-tabs>*{flex:0 0 auto!important}
+}
+/* football pitch: vertical, responsive */
+.football-pitch,.pitch,.formation-pitch{aspect-ratio:3/4!important;width:min(100%,520px)!important;height:auto!important;max-height:72vh!important;margin-inline:auto!important;position:relative!important;overflow:hidden!important}
+/* hangman line art */
+.hangman svg,.hangman-board svg,.hangman-drawing svg{color:#fff!important;stroke:#fff!important}
+.hangman svg *,.hangman-board svg *,.hangman-drawing svg *{stroke:#fff!important;fill:none!important}
+/* word search board stays square and fits viewport */
+.word-search-board,.wordsearch-board,.ws-board,#wordSearchBoard{width:min(92vw,68vh,560px)!important;height:min(92vw,68vh,560px)!important;aspect-ratio:1/1!important;margin-inline:auto!important}
+@media (orientation:landscape){.word-search-board,.wordsearch-board,.ws-board,#wordSearchBoard{width:min(72vh,52vw,560px)!important;height:min(72vh,52vw,560px)!important}}
+/* unified section rhythm */
+.section,.mode-section,.content-section{max-width:1180px!important;margin-inline:auto!important;padding-inline:clamp(14px,3vw,32px)!important}
+h1,h2,h3{letter-spacing:.01em}
+</style>
 </head>
 <body>
 
