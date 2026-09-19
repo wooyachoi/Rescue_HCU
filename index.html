@@ -1886,7 +1886,7 @@ main{padding-top:0!important;}
 .home-today:active,.home-football:active{background-color:#211522!important;box-shadow:inset 0 0 0 999px rgba(239,35,60,.07)!important}
 .home-feature:focus-visible,.home-primary:focus-visible,.home-team-row button:focus-visible{outline:2px solid rgba(239,35,60,.75)!important;outline-offset:2px}
 .home-daily-quote{max-width:390px;margin:10px 30px 0 0;transform:none!important;rotate:-3deg;font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:.02em;text-shadow:0 2px 14px rgba(0,0,0,.55)}
-.home-daily-quote .quote-kicker{display:none!important}.home-daily-quote{font-family:Georgia,'Noto Serif KR',serif;font-weight:800;letter-spacing:.015em}.home-daily-quote b{display:block;font-size:clamp(21px,2.4vw,32px);line-height:1.45;font-style:italic;text-shadow:0 3px 0 rgba(239,35,60,.22),0 8px 24px rgba(0,0,0,.5);background:linear-gradient(110deg,#fff 10%,#f6cbd1 55%,#fff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}.home-daily-quote .quote-credit{display:block;margin-top:12px;text-align:right;font:500 11px/1.4 Arial,sans-serif;letter-spacing:.08em;color:#aebbd0}
+.home-daily-quote .quote-kicker{display:none!important}.home-daily-quote{font-family:'Brush Script MT','Segoe Script','Apple Chancery',cursive;font-weight:600;letter-spacing:.015em}.home-daily-quote b{display:block;font-size:clamp(21px,2.4vw,32px);line-height:1.45;font-style:italic;text-shadow:0 3px 0 rgba(239,35,60,.22),0 8px 24px rgba(0,0,0,.5);background:linear-gradient(110deg,#fff 10%,#f6cbd1 55%,#fff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}.home-daily-quote .quote-credit{display:block;margin-top:12px;text-align:right;font:500 11px/1.4 Arial,sans-serif;letter-spacing:.08em;color:#aebbd0}
 .home-daily-quote b{font-size:clamp(18px,2vw,28px);line-height:1.25;color:#f7f8fb;font-weight:700}
 @media(max-width:700px){.home-daily-quote{margin:22px 0 0 12px;max-width:90%;}.home-daily-quote b{font-size:19px}}
 </style>
@@ -2511,21 +2511,12 @@ document.getElementById("loginForm").addEventListener("submit",async function(e)
   const email=document.getElementById("loginEmail").value.trim();
   const pw=document.getElementById("loginPassword").value;
   const err=document.getElementById("loginError");
-  const submit=this.querySelector('button[type="submit"]');
   err.classList.remove("show");
   if(!email){err.textContent="이메일을 입력해 주세요.";err.classList.add("show");return;}
   if(!pw){err.textContent="비밀번호를 입력해 주세요.";err.classList.add("show");return;}
-  if(submit){submit.disabled=true;submit.textContent="SIGNING IN...";}
-  try{
-    const {data,error}=await supabaseClient.auth.signInWithPassword({email,password:pw});
-    if(error) throw error;
-    if(!data?.user) throw new Error("로그인 사용자 정보를 받지 못했습니다. 다시 시도해 주세요.");
-    await handleSignedIn(data.user);
-  }catch(error){
-    err.textContent=authErrorText(error);err.classList.add("show");
-  }finally{
-    if(submit){submit.disabled=false;submit.textContent="LOGIN";}
-  }
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password:pw});
+  if(error){err.textContent=authErrorText(error);err.classList.add("show");return;}
+  await handleSignedIn(data.user);
 });
 
 document.getElementById("signupForm").addEventListener("submit",async function(e){
@@ -4818,78 +4809,7 @@ function setTab(active){
   if(active==="ranking"){tabRanking.classList.add("active");viewRanking.style.display="block";renderRanking();}
   if(active==="football"){tabFootball.classList.add("active");viewFootball.style.display="block";renderFootballHub();}
 }
-const HOME_DAILY_LYRICS = ["I'm up before the morning
-My eyes are on the ceiling","Saw you walk through the doorway
-Guess that's a part of grieving","I know that you're not coming back
-But still I wait for you
-Like you're just running late
-And somehow I'll see you soon","Four times around the sun
-I've counted every season
-And still your name
-Keeps finding its way
-Into my thoughts","I tried to keep myself busy
-I tried to let it go
-But every quiet moment
-Brings me back to you","Like gravity
-These memories pull
-Every part of me
-Back toward you
-And I can't escape","Four times around the sun
-I've watched the world keep turning","I've missed you more times
-Than I could ever count
-And I've erased your face
-Only to remember again","For a moment in time
-Forever caught
-Like a figure
-Inside a black-and-white photograph","My sadness always wears
-The very same expression
-As it looks toward you","Four times around the sun
-I've watched the world keep turning","I've missed you tens of thousands of times
-And I've tried to erase you again
-Why did I have to?","Four times around the sun
-I wonder if you've ever thought about it
-After all this time has passed","Ten times around the sun
-And if I'm still missing you
-If that is still
-Who I am","Why did it have to be this way?
-Why did you have to leave me?","I'm up before the morning
-My eyes are on the ceiling","Saw you walk through the doorway
-Guess that's a part of grieving","I know that you're not coming back
-But still I wait for you
-Like you're just running late
-And somehow I'll see you soon","Four times around the sun
-I've counted every season
-And still your name
-Keeps finding its way
-Into my thoughts","I tried to keep myself busy
-I tried to let it go
-But every quiet moment
-Brings me back to you","Like gravity
-These memories pull
-Every part of me
-Back toward you
-And I can't escape","Four times around the sun
-I've watched the world keep turning","I've missed you more times
-Than I could ever count
-And I've erased your face
-Only to remember again","For a moment in time
-Forever caught
-Like a figure
-Inside a black-and-white photograph","My sadness always wears
-The very same expression
-As it looks toward you","Four times around the sun
-I've watched the world keep turning","I've missed you tens of thousands of times
-And I've tried to erase you again
-Why did I have to?","Four times around the sun
-I wonder if you've ever thought about it
-After all this time has passed","Ten times around the sun
-And if I'm still missing you
-If that is still
-Who I am","Why did it have to be this way?
-Why did you have to leave me?","I'm learning to wake up
-Without looking for you
-Learning how to grow up
-Learning how to lead life without you, friend"];
+const HOME_DAILY_LYRICS = ["천천히 솔직히\n아주 금방까진\n아니더라도\n언젠간 잊혀질 거라고","믿었지 그렇게\n믿고 지금까지\n견뎌왔었는데\n그런 날 비웃듯","그 기억들이 마치 중력처럼\n내 모든 마음을 너에게로\n끌어당기고 있어\n벗어날 수가 없어","지구가 태양을 네번\n감싸안는 동안\n나는 수백번도 넘게\n너를 그리워 했고\n눈물 흘려야 했어","참 그렇지.\n이렇게 날 힘들게 하고\n외롭게 하는\n그런 기억인데","그 기억들이 마치 중력처럼\n내 모든 마음을 너에게로\n끌어당기고 있어\n벗어날 수가 없어","지구가 태양을 네번\n감싸 안는 동안","나는 수백번도 넘게\n너를 그리워했고\n또 지워가야 했어\n왜 그래야만 했어","찰나의 순간에\n영원히 갇혀진\n흑백사진 속 피사체 같이","나의 슬픔은 항상\n똑같은 표정으로\n널 향하고","지구가 태양을 네번\n감싸 안는 동안","나는 수 만 번도 넘게\n너를 그리워했고\n또 지워가야 했어\n왜 그래야만 했어","지구가 태양을 네번\n감싸 안는 동안 한번\n생각해 본 적 있는 지\n꽤 오랜 시간 지나","지구가 태양을 열번\n감싸 안은 후에도 널\n여전히 그리워하고 있을\n내 그 모습을","왜 그래야만 했어\n왜 날 떠나야했어"];
 function updateHomeDailyQuote(){
   const el=document.getElementById("homeDailyQuote");
   if(!el || !HOME_DAILY_LYRICS.length) return;
@@ -4900,7 +4820,7 @@ function updateHomeDailyQuote(){
   const dayNumber=Math.floor(Date.UTC(y,m-1,d)/86400000);
   const index=((dayNumber % HOME_DAILY_LYRICS.length)+HOME_DAILY_LYRICS.length)%HOME_DAILY_LYRICS.length;
   const paragraph=HOME_DAILY_LYRICS[index];
-  el.innerHTML='<b></b><small class="quote-credit">-넬, 지구가 태양을 네 번-</small>';
+  el.innerHTML='<b></b>';
   const b=el.querySelector("b");
   if(b) b.innerHTML=escapeHtml(paragraph).replace(/\n/g,"<br>");
 }
